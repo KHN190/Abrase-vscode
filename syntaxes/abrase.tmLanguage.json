@@ -1,0 +1,104 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Abrase",
+  "scopeName": "source.abrase",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#attributes" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#declarations" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#calls" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "name": "comment.line.double-slash.abrase", "match": "//.*$" },
+        { "name": "comment.block.abrase", "begin": "/\\*", "end": "\\*/" }
+      ]
+    },
+    "attributes": {
+      "patterns": [
+        { "name": "storage.type.annotation.abrase", "match": "@[A-Za-z_][A-Za-z0-9_]*" }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.abrase",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            { "name": "constant.character.escape.abrase", "match": "\\\\(?:[ntr\\\\'\"0]|u\\{[0-9a-fA-F]+\\})" },
+            {
+              "name": "meta.interpolation.abrase",
+              "begin": "\\{",
+              "end": "\\}",
+              "beginCaptures": { "0": { "name": "punctuation.section.interpolation.begin.abrase" } },
+              "endCaptures": { "0": { "name": "punctuation.section.interpolation.end.abrase" } }
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.abrase",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            { "name": "constant.character.escape.abrase", "match": "\\\\(?:[ntr\\\\'\"0]|u\\{[0-9a-fA-F]+\\})" }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        { "name": "constant.numeric.integer.hexadecimal.abrase", "match": "\\b0[xX][0-9a-fA-F_]+\\b" },
+        { "name": "constant.numeric.integer.binary.abrase", "match": "\\b0[bB][01_]+\\b" },
+        { "name": "constant.numeric.float.abrase", "match": "\\b\\d[\\d_]*\\.[\\d_]+(?:[eE][+-]?\\d+)?\\b|\\b\\d[\\d_]*[eE][+-]?\\d+\\b" },
+        { "name": "constant.numeric.integer.abrase", "match": "\\b\\d[\\d_]*\\b" }
+      ]
+    },
+    "declarations": {
+      "patterns": [
+        { "match": "\\b(fn)\\s+([A-Za-z_][A-Za-z0-9_]*)", "captures": { "1": { "name": "keyword.declaration.function.abrase" }, "2": { "name": "entity.name.function.abrase" } } },
+        { "match": "\\b(type|trait|effect)\\s+([A-Za-z_][A-Za-z0-9_]*)", "captures": { "1": { "name": "keyword.declaration.abrase" }, "2": { "name": "entity.name.type.abrase" } } }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        { "name": "constant.language.boolean.abrase", "match": "\\b(true|false)\\b" },
+        { "name": "variable.language.abrase", "match": "\\b(self|Self)\\b" },
+        { "name": "keyword.control.abrase", "match": "\\b(if|else|match|for|while|loop|break|continue|return)\\b" },
+        { "name": "keyword.control.effect.abrase", "match": "\\b(handle|resume|throw|region)\\b" },
+        { "name": "keyword.other.abrase", "match": "\\b(let|const|static|mut|move|as|in|where|op|alias)\\b" },
+        { "name": "keyword.declaration.abrase", "match": "\\b(fn|type|trait|impl|effect|use|pub)\\b" }
+      ]
+    },
+    "types": {
+      "patterns": [
+        { "name": "storage.type.primitive.abrase", "match": "\\b(Int|Float|Bool|String|Unit|Char)\\b" },
+        { "name": "storage.type.abrase", "match": "\\b[A-Z][A-Za-z0-9_]*\\b" }
+      ]
+    },
+    "calls": {
+      "patterns": [
+        { "name": "variable.function.abrase", "match": "\\b([A-Za-z_][A-Za-z0-9_]*)(?=\\s*\\()" }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        { "name": "punctuation.accessor.double-colon.abrase", "match": "::" },
+        { "name": "keyword.operator.range.abrase", "match": "\\.\\.=|\\.\\." },
+        { "name": "keyword.operator.arrow.abrase", "match": "->|=>" },
+        { "name": "keyword.operator.assignment.augmented.abrase", "match": "<<=|>>=|\\+=|-=|\\*=|/=|%=|\\^=|&=|\\|=" },
+        { "name": "keyword.operator.comparison.abrase", "match": "==|!=|<=|>=|<|>" },
+        { "name": "keyword.operator.logical.abrase", "match": "&&|\\|\\||!" },
+        { "name": "keyword.operator.bitwise.abrase", "match": "<<|>>|\\^" },
+        { "name": "keyword.operator.arithmetic.abrase", "match": "\\+|-|\\*|/|%" },
+        { "name": "keyword.operator.assignment.abrase", "match": "=" }
+      ]
+    }
+  }
+}

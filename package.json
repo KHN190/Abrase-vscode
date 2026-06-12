@@ -1,0 +1,45 @@
+{
+  "name": "abrase",
+  "displayName": "Abrase",
+  "description": "Syntax highlighting, simple completion, and debug for the Abrase language (.abe).",
+  "version": "0.1.0",
+  "publisher": "khn190",
+  "license": "MIT",
+  "engines": { "vscode": "^1.75.0" },
+  "categories": ["Programming Languages"],
+  "main": "./extension.js",
+  "activationEvents": ["onLanguage:abrase"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "abrase",
+        "aliases": ["Abrase", "abrase"],
+        "extensions": [".abe"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "abrase",
+        "scopeName": "source.abrase",
+        "path": "./syntaxes/abrase.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      { "command": "abrase.check",   "title": "Abrase: Check" },
+      { "command": "abrase.run",     "title": "Abrase: Run" },
+      { "command": "abrase.disasm",  "title": "Abrase: Disasm" },
+      { "command": "abrase.debug",   "title": "Abrase: Run with debug (--debug / BREAK_AT)" }
+    ],
+    "configuration": {
+      "title": "Abrase",
+      "properties": {
+        "abrase.cli": {
+          "type": "string",
+          "default": "abrase",
+          "description": "Path to the abrase CLI binary."
+        }
+      }
+    }
+  }
+}
