@@ -2,7 +2,7 @@
   "name": "abrase",
   "displayName": "Abrase",
   "description": "Syntax highlighting, simple completion, and debug for the Abrase language (.abe).",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "knh190",
   "license": "MIT",
   "engines": { "vscode": "^1.75.0" },
